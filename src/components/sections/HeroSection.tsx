@@ -33,51 +33,61 @@ const HeroSection: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center bg-hero-pattern overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16"
     >
-      <div className="absolute inset-0 z-0 bg-black/40"></div>
+      {/* Modern gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-muted z-0"></div>
       
-      {/* Floating shapes */}
-      <div className="absolute right-10 top-1/4 w-64 h-64 bg-primary/20 rounded-full filter blur-3xl"></div>
-      <div className="absolute -left-20 bottom-1/4 w-80 h-80 bg-accent/20 rounded-full filter blur-3xl"></div>
+      {/* Animated background elements */}
+      <div className="absolute w-full h-full overflow-hidden z-0">
+        <div className="absolute -right-20 top-1/4 w-96 h-96 bg-primary/10 rounded-full filter blur-[100px] animate-pulse"></div>
+        <div className="absolute -left-20 bottom-1/4 w-96 h-96 bg-accent/10 rounded-full filter blur-[100px] animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute left-1/3 top-1/3 w-64 h-64 bg-secondary/10 rounded-full filter blur-[100px] animate-pulse" style={{ animationDelay: '2.5s' }}></div>
+      </div>
+      
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMDIwMjAiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTAgMGg2MHY2MEgweiIvPjxwYXRoIGQ9Ik0zMCAzMGgzMHYzMEgzMHoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40 z-0"></div>
       
       <div className="section-container relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="w-full lg:w-1/2 mb-12 lg:mb-0">
-            <div className="overflow-hidden mb-4">
-              <span className="inline-block text-sm md:text-base font-medium uppercase tracking-wider text-primary animate-fade-in">
-                Aspiring Web Designer & Competitive Coder
-              </span>
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="w-full lg:w-1/2 space-y-8">
+            <div className="space-y-4">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20">
+                <div className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
+                <span className="text-sm font-medium text-primary">
+                  Aspiring Web Designer & Competitive Coder
+                </span>
+              </div>
+              
+              <h1 ref={headingRef} className="heading">
+                <div className="overflow-hidden">
+                  <span className="inline-block opacity-0">
+                    Building <span className="gradient-text font-bold">Digital</span> 
+                  </span>
+                </div>
+                <div className="overflow-hidden">
+                  <span className="inline-block opacity-0 delay-200">
+                    Experiences That 
+                  </span>
+                </div>
+                <div className="overflow-hidden">
+                  <span className="inline-block opacity-0 delay-400">
+                    Make An <span className="text-primary font-bold">Impact</span>
+                  </span>
+                </div>
+              </h1>
+              
+              <div className="overflow-hidden">
+                <p className="text-lg text-muted-foreground max-w-md opacity-0 animate-fade-in delay-500">
+                  Tech enthusiast specializing in web design and competitive coding with a passion for building innovative solutions.
+                </p>
+              </div>
             </div>
             
-            <h1 ref={headingRef} className="heading mb-6">
-              <div className="overflow-hidden">
-                <span className="inline-block opacity-0">
-                  Building <span className="gradient-text">Digital</span> 
-                </span>
-              </div>
-              <div className="overflow-hidden">
-                <span className="inline-block opacity-0 delay-200">
-                  Experiences That 
-                </span>
-              </div>
-              <div className="overflow-hidden">
-                <span className="inline-block opacity-0 delay-400">
-                  Make An <span className="text-primary">Impact</span>
-                </span>
-              </div>
-            </h1>
-            
-            <div className="overflow-hidden">
-              <p className="subheading max-w-md opacity-0 animate-fade-in delay-500">
-                Tech enthusiast specializing in web design and competitive coding with a passion for building innovative solutions.
-              </p>
-            </div>
-            
-            <div className="flex flex-wrap gap-4 mt-8 opacity-0 animate-fade-in delay-500">
+            <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in delay-500">
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/80 text-white rounded-full px-8"
+                className="bg-primary hover:bg-primary/80 text-white rounded-full px-8 shadow-lg shadow-primary/20"
                 asChild
               >
                 <a href="#contact">
@@ -88,7 +98,7 @@ const HeroSection: React.FC = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-full border-primary/50 text-primary hover:bg-primary/10 px-8"
+                className="rounded-full border-primary/50 text-primary hover:bg-primary/10 px-8 backdrop-blur-sm"
                 asChild
               >
                 <a href="#skills">
@@ -96,22 +106,46 @@ const HeroSection: React.FC = () => {
                 </a>
               </Button>
             </div>
+            
+            {/* Tech stack badges */}
+            <div className="flex flex-wrap gap-3 opacity-0 animate-fade-in delay-700">
+              {['Python', 'React', 'JavaScript', 'C++', 'HTML/CSS'].map((tech) => (
+                <div key={tech} className="px-3 py-1 rounded-full text-xs font-medium bg-secondary/20 text-secondary-foreground backdrop-blur-sm border border-secondary/10">
+                  {tech}
+                </div>
+              ))}
+            </div>
           </div>
           
           <div className="w-full lg:w-2/5">
-            <div className="relative aspect-square max-w-md mx-auto">
-              {/* Profile picture placeholder with animated gradient border */}
-              <div className="w-full h-full rounded-2xl overflow-hidden glass hover-card border-2 border-primary/30">
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background/80 to-background/30">
-                  <p className="text-sm text-center text-muted-foreground p-6">
-                    Your professional profile picture will appear here
-                  </p>
+            <div className="relative">
+              {/* Profile picture with modern styling */}
+              <div className="relative aspect-square max-w-md mx-auto">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl blur-2xl"></div>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden glass border border-white/10 shadow-xl">
+                  <div className="w-full h-full flex items-center justify-center bg-card/40 backdrop-blur-md p-8">
+                    {/* Profile picture outline */}
+                    <div className="relative w-64 h-64 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center animate-pulse">
+                      <div className="absolute inset-3 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm"></div>
+                      <p className="text-sm text-center text-foreground/80 relative">
+                        Your professional profile picture will appear here
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
               
               {/* Decorative elements */}
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 rounded-lg bg-accent/10 -z-10 animate-pulse"></div>
-              <div className="absolute -top-4 -right-4 w-16 h-16 rounded-lg bg-primary/10 -z-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-lg bg-accent/20 backdrop-blur-md -z-10"></div>
+              <div className="absolute -top-4 -right-4 w-16 h-16 rounded-lg bg-primary/20 backdrop-blur-md -z-10"></div>
+              
+              {/* Floating code snippets for tech aesthetic */}
+              <div className="absolute -right-8 top-1/4 px-3 py-2 rounded bg-black/40 backdrop-blur-md text-xs font-mono text-primary/80 rotate-3 border border-white/5 hidden lg:block">
+                &lt;code/&gt;
+              </div>
+              <div className="absolute -left-6 bottom-1/4 px-3 py-2 rounded bg-black/40 backdrop-blur-md text-xs font-mono text-accent/80 -rotate-3 border border-white/5 hidden lg:block">
+                function(){ }
+              </div>
             </div>
           </div>
         </div>
@@ -119,13 +153,14 @@ const HeroSection: React.FC = () => {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <a
             href="#about"
-            className="inline-block animate-bounce text-white/60 hover:text-white transition-colors"
+            className="flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors animate-bounce"
             aria-label="Scroll down"
           >
+            <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
+              width="20" 
+              height="20" 
               viewBox="0 0 24 24" 
               fill="none" 
               stroke="currentColor" 
