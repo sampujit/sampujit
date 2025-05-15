@@ -120,20 +120,35 @@ const HeroSection: React.FC = () => {
           
           <div className="w-full lg:w-2/5">
             <div className="relative">
-              {/* Profile picture with modern styling */}
+              {/* Profile picture with enhanced styling */}
               <div className="relative aspect-square max-w-md mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl blur-2xl"></div>
-                <div className="relative w-full h-full rounded-2xl overflow-hidden glass border border-white/10 shadow-xl">
-                  <div className="w-full h-full flex items-center justify-center bg-card/40 backdrop-blur-md p-8">
-                    {/* Profile picture */}
-                    <Avatar className="w-64 h-64 rounded-full">
-                      <AvatarImage 
-                        src="/lovable-uploads/a6417c63-6896-4883-beda-554c46ded4ee.png" 
-                        alt="Sampujit Nath" 
-                        className="object-cover"
-                      />
-                      <AvatarFallback className="bg-primary/10 text-primary text-3xl">SN</AvatarFallback>
-                    </Avatar>
+                {/* Improved background gradients */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-2xl blur-3xl"></div>
+                <div className="absolute inset-8 bg-gradient-to-br from-primary/20 via-background to-accent/20 rounded-full blur-xl opacity-70"></div>
+                
+                {/* Glass container */}
+                <div className="relative w-full h-full rounded-2xl overflow-hidden glass border border-primary/20 shadow-2xl backdrop-blur-xl">
+                  {/* Decorative circles */}
+                  <div className="absolute top-4 left-4 w-20 h-20 rounded-full bg-primary/5 backdrop-blur-sm"></div>
+                  <div className="absolute bottom-4 right-4 w-16 h-16 rounded-full bg-accent/5 backdrop-blur-sm"></div>
+                  
+                  {/* Profile picture container */}
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-background/80 via-background/60 to-muted/40 backdrop-blur-md p-8">
+                    {/* Glowing background effect */}
+                    <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent opacity-70"></div>
+                    
+                    {/* Avatar with styled border */}
+                    <div className="relative">
+                      <div className="absolute -inset-3 bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30 rounded-full blur-md opacity-75 animate-pulse" style={{ animationDuration: '3s' }}></div>
+                      <Avatar className="w-64 h-64 rounded-full border-2 border-white/10 shadow-lg">
+                        <AvatarImage 
+                          src="/lovable-uploads/a6417c63-6896-4883-beda-554c46ded4ee.png" 
+                          alt="Sampujit Nath" 
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-primary/10 text-primary text-3xl">SN</AvatarFallback>
+                      </Avatar>
+                    </div>
                   </div>
                 </div>
               </div>
