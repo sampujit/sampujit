@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Mail, Phone, Linkedin } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,11 @@ const ContactSection: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+  
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("3bMjRLQOcwiDtPzG2");
+  }, []);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,25 +58,43 @@ const ContactSection: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      if (formRef.current) {
+        const result = await emailjs.sendForm(
+          'service_17rq4cw', 
+          'template_6ickcmf', 
+          formRef.current,
+          '3bMjRLQOcwiDtPzG2'
+        );
+        
+        console.log('SUCCESS!', result.text);
+        
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        
+        // Reset the form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('FAILED...', error);
       toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        title: "Failed to send message",
+        description: "There was an error sending your message. Please try again later.",
+        variant: "destructive"
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-      
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
