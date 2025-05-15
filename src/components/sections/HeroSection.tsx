@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection: React.FC = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -124,13 +125,15 @@ const HeroSection: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl blur-2xl"></div>
                 <div className="relative w-full h-full rounded-2xl overflow-hidden glass border border-white/10 shadow-xl">
                   <div className="w-full h-full flex items-center justify-center bg-card/40 backdrop-blur-md p-8">
-                    {/* Profile picture outline */}
-                    <div className="relative w-64 h-64 rounded-full border-2 border-dashed border-primary/30 flex items-center justify-center animate-pulse">
-                      <div className="absolute inset-3 rounded-full border border-white/10 bg-black/20 backdrop-blur-sm"></div>
-                      <p className="text-sm text-center text-foreground/80 relative">
-                        Your professional profile picture will appear here
-                      </p>
-                    </div>
+                    {/* Profile picture */}
+                    <Avatar className="w-64 h-64 rounded-full">
+                      <AvatarImage 
+                        src="/lovable-uploads/a6417c63-6896-4883-beda-554c46ded4ee.png" 
+                        alt="Sampujit Nath" 
+                        className="object-cover"
+                      />
+                      <AvatarFallback className="bg-primary/10 text-primary text-3xl">SN</AvatarFallback>
+                    </Avatar>
                   </div>
                 </div>
               </div>
