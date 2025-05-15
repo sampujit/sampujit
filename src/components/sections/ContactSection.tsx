@@ -65,7 +65,7 @@ const ContactSection: React.FC = () => {
     try {
       if (formRef.current) {
         const result = await emailjs.sendForm(
-          'service_17rq4cw', 
+          'service_8znsrk8', 
           'template_6ickcmf', 
           formRef.current,
           '3bMjRLQOcwiDtPzG2'
