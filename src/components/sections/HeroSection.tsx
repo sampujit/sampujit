@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -56,7 +55,7 @@ const HeroSection: React.FC = () => {
               <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20">
                 <div className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
                 <span className="text-sm font-medium text-primary">
-                  Aspiring Web Designer & Competitive Coder
+                  Aspiring Web Designer, Competitive Coder & Cybersecurity Enthusiast
                 </span>
               </div>
               
