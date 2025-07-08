@@ -1,12 +1,14 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, Award, Calendar, Clock } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { ExternalLink, Award, Calendar, Clock, Eye } from 'lucide-react';
 
 const PortfolioSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -125,6 +127,10 @@ const PortfolioSection: React.FC = () => {
     }
   ];
 
+  const handleCertificateClick = (cert: any) => {
+    setSelectedCertificate(cert);
+  };
+
   return (
     <section id="portfolio" className="py-20 bg-background">
       <div className="section-container">
@@ -138,7 +144,7 @@ const PortfolioSection: React.FC = () => {
         <div ref={contentRef} className="opacity-0" style={{ animationDelay: '200ms' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <Card key={index} className="glass border-primary/20 hover-card group overflow-hidden">
+              <Card key={index} className="glass border-primary/20 hover-card group overflow-hidden cursor-pointer" onClick={() => handleCertificateClick(cert)}>
                 <div className="relative h-48 overflow-hidden">
                   <img 
                     src={cert.image} 
@@ -154,6 +160,9 @@ const PortfolioSection: React.FC = () => {
                     }`}>
                       {cert.type}
                     </span>
+                  </div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <Eye className="w-8 h-8 text-white" />
                   </div>
                 </div>
                 
@@ -218,6 +227,7 @@ const PortfolioSection: React.FC = () => {
                         variant="outline" 
                         className="text-xs rounded-full border-primary/50 text-primary hover:bg-primary/10"
                         asChild
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <a 
                           href={cert.badge || cert.verification} 
@@ -249,6 +259,54 @@ const PortfolioSection: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Certificate Modal */}
+      <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold">
+              {selectedCertificate?.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col items-center space-y-4">
+            <img 
+              src={selectedCertificate?.image} 
+              alt={selectedCertificate?.title}
+              className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
+            />
+            <div className="text-center space-y-2">
+              <p className="text-sm text-muted-foreground font-medium">
+                {selectedCertificate?.provider}
+              </p>
+              {selectedCertificate?.institution && (
+                <p className="text-xs text-muted-foreground">
+                  {selectedCertificate.institution}
+                </p>
+              )}
+              <p className="text-sm text-foreground">
+                {selectedCertificate?.description}
+              </p>
+              {(selectedCertificate?.badge || selectedCertificate?.verification) && (
+                <Button 
+                  size="sm" 
+                  className="mt-4"
+                  asChild
+                >
+                  <a 
+                    href={selectedCertificate.badge || selectedCertificate.verification} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Verify Certificate
+                  </a>
+                </Button>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
