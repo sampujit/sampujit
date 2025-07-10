@@ -36,6 +36,27 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
+      title: "ChatGPT for Cybersecurity",
+      provider: "Simplilearn SkillUp",
+      issued: "9th July 2025",
+      code: "Certificate code: 8594538",
+      image: "/lovable-uploads/f326824e-d4cf-40c8-ba38-fbc43b057af0.png",
+      type: "Certificate",
+      description: "Completed comprehensive training on using ChatGPT for cybersecurity applications and threat analysis.",
+    },
+    {
+      title: "Cybersecurity Analyst Job Simulation",
+      provider: "Forage",
+      institution: "TATA Group",
+      issued: "July 9th, 2025",
+      skills: "Identity and access management (IAM) fundamentals, IAM strategy assessment, Crafting custom IAM solutions, Platform integration",
+      verificationCode: "ZswJxNsmjCQQKwd",
+      userCode: "yQpPP4EGLghSkAsgK",
+      image: "/lovable-uploads/09b05732-fa79-4602-9c5a-98d4f95ae8fc.png",
+      type: "Job Simulation",
+      description: "Completed practical cybersecurity analyst tasks including IAM fundamentals, strategy assessment, and custom solutions development.",
+    },
+    {
       title: "Cloud Virtual Internship",
       provider: "AICTE - National Internship Portal",
       institution: "Techno India University, West Bengal",
@@ -156,6 +177,7 @@ const PortfolioSection: React.FC = () => {
                       cert.type === 'Virtual Internship' ? 'bg-primary/20 text-primary' :
                       cert.type === 'Certificate' ? 'bg-accent/20 text-accent' :
                       cert.type === 'Achievement' ? 'bg-yellow-500/20 text-yellow-400' :
+                      cert.type === 'Job Simulation' ? 'bg-green-500/20 text-green-400' :
                       'bg-secondary/20 text-secondary-foreground'
                     }`}>
                       {cert.type}
@@ -210,6 +232,18 @@ const PortfolioSection: React.FC = () => {
                     {cert.supporter && (
                       <div className="text-xs text-muted-foreground">
                         <span className="font-medium">Supported by:</span> {cert.supporter}
+                      </div>
+                    )}
+                    
+                    {cert.code && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Code:</span> {cert.code}
+                      </div>
+                    )}
+                    
+                    {cert.verificationCode && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Verification:</span> {cert.verificationCode}
                       </div>
                     )}
                     
