@@ -36,15 +36,6 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
-      title: "Tools of the Trade: Linux and SQL",
-      provider: "Google (Coursera)",
-      issued: "Jul 12, 2025",
-      type: "Course Certificate",
-      skills: "Linux, SQL, Command Line Interface, Database Management, File System Navigation, Query Optimization",
-      image: "/lovable-uploads/93494487-5c9a-4d36-86c2-b48c2c0352fe.png",
-      description: "Successfully completed Google's comprehensive course on Linux and SQL fundamentals, covering essential tools for cybersecurity and data analysis.",
-    },
-    {
       title: "Google Cybersecurity Professional Certificate",
       provider: "Google (Coursera)",
       issued: "Jul 15, 2025",
@@ -53,6 +44,24 @@ const PortfolioSection: React.FC = () => {
       image: "/lovable-uploads/2ca3fb71-34b6-4c47-b20f-3eb96f4ca7cb.png",
       type: "Professional Certificate",
       description: "Completed comprehensive cybersecurity training covering hands-on, practice-based assessments designed to prepare for entry-level roles in cybersecurity. Gained expertise in beginner-level Python, Linux, SQL, and essential cybersecurity tools.",
+    },
+    {
+      title: "Cyber Security Consulting Simulation",
+      provider: "PwC (Forage)",
+      issued: "Jul 15, 2025",
+      type: "Certificate of Completion",
+      skills: "Risk Assessment, SDLC, IT General Controls (ITGC), Controls Testing, Security Consulting, Cybersecurity Framework Implementation",
+      image: "/lovable-uploads/b863da5a-7c4a-4855-908f-0ae163c591cd.png",
+      description: "Completed PwC's virtual cybersecurity consulting simulation, gaining hands-on experience in risk assessment, SDLC walkthrough, IT general controls testing, and security consulting practices.",
+    },
+    {
+      title: "Tools of the Trade: Linux and SQL",
+      provider: "Google (Coursera)",
+      issued: "Jul 12, 2025",
+      type: "Course Certificate",
+      skills: "Linux, SQL, Command Line Interface, Database Management, File System Navigation, Query Optimization",
+      image: "/lovable-uploads/93494487-5c9a-4d36-86c2-b48c2c0352fe.png",
+      description: "Successfully completed Google's comprehensive course on Linux and SQL fundamentals, covering essential tools for cybersecurity and data analysis.",
     },
     {
       title: "ChatGPT for Cybersecurity",
