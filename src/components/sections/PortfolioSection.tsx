@@ -36,6 +36,16 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
+      title: "Google Cybersecurity Professional Certificate",
+      provider: "Google (Coursera)",
+      issued: "Jul 15, 2025",
+      courses: "9 Courses",
+      skills: "Python, Linux, SQL, Security Information and Event Management (SIEM) tools, Intrusion Detection, Network Protocol Analyzers, Risk Assessment, Incident Response, Vulnerability Assessment",
+      image: "/lovable-uploads/2ca3fb71-34b6-4c47-b20f-3eb96f4ca7cb.png",
+      type: "Professional Certificate",
+      description: "Completed comprehensive cybersecurity training covering hands-on, practice-based assessments designed to prepare for entry-level roles in cybersecurity. Gained expertise in beginner-level Python, Linux, SQL, and essential cybersecurity tools.",
+    },
+    {
       title: "ChatGPT for Cybersecurity",
       provider: "Simplilearn SkillUp",
       issued: "9th July 2025",
