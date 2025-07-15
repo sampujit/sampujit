@@ -36,6 +36,15 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
+      title: "Tools of the Trade: Linux and SQL",
+      provider: "Google (Coursera)",
+      issued: "Jul 12, 2025",
+      type: "Course Certificate",
+      skills: "Linux, SQL, Command Line Interface, Database Management, File System Navigation, Query Optimization",
+      image: "/lovable-uploads/93494487-5c9a-4d36-86c2-b48c2c0352fe.png",
+      description: "Successfully completed Google's comprehensive course on Linux and SQL fundamentals, covering essential tools for cybersecurity and data analysis.",
+    },
+    {
       title: "Google Cybersecurity Professional Certificate",
       provider: "Google (Coursera)",
       issued: "Jul 15, 2025",

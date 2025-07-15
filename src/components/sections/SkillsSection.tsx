@@ -84,12 +84,13 @@ const SkillsSection: React.FC = () => {
     { name: "React", icon: "⚛️", color: "#10B981" },
     { name: "HTML/CSS", icon: "🌐", color: "#F43F5E" },
     { name: "MySQL", icon: "🗃️", color: "#6366F1" },
+    { name: "Linux", icon: "🐧", color: "#FFA500" },
     { name: "Video Editing", icon: "🎬", color: "#8B5CF6" },
     { name: "Event Management", icon: "📅", color: "#EC4899" }
   ];
 
   const coreTechnologies = [
-    "React", "JavaScript", "HTML/CSS", "Python", "C/C++", "MySQL"
+    "React", "JavaScript", "HTML/CSS", "Python", "C/C++", "MySQL", "Linux"
   ];
 
   return (
