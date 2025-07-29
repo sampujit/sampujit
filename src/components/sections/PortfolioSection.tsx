@@ -36,6 +36,28 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
+      title: "Deloitte Cyber Job Simulation",
+      provider: "Deloitte (Forage)",
+      issued: "Jul 29, 2025",
+      type: "Certificate of Completion",
+      skills: "Cyber Security, Practical Cybersecurity Tasks, Security Analysis, Threat Assessment",
+      image: "/lovable-uploads/905f7664-dddc-4487-8dbe-fd011959063b.png",
+      description: "Completed practical cybersecurity tasks through Deloitte's virtual job simulation, gaining hands-on experience in cyber security analysis and threat assessment.",
+      verificationCode: "MCEXHEg3kqHMOMEEG",
+      userCode: "yQpPMEGLgh5kAugk"
+    },
+    {
+      title: "Certified Cyber Security Professional Program",
+      provider: "ICTRD (Indian Council for Technical Research and Development)",
+      issued: "Jul 29, 2025",
+      type: "Professional Certification",
+      skills: "Cybersecurity Fundamentals, Security Protocols, Risk Management, Incident Response, Network Security",
+      image: "/lovable-uploads/76e333a1-2191-466a-9c38-8914a52719e9.png",
+      description: "Successfully completed the comprehensive Certified Cyber Security Professional Program and passed the examination conducted by ICTRD India.",
+      tid: "AZ13269022",
+      documentId: "DI/C/25006514"
+    },
+    {
       title: "Google Cybersecurity Professional Certificate",
       provider: "Google (Coursera)",
       issued: "Jul 15, 2025",
@@ -272,6 +294,18 @@ const PortfolioSection: React.FC = () => {
                     {cert.verificationCode && (
                       <div className="text-xs text-muted-foreground">
                         <span className="font-medium">Verification:</span> {cert.verificationCode}
+                      </div>
+                    )}
+                    
+                    {cert.tid && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">TID:</span> {cert.tid}
+                      </div>
+                    )}
+                    
+                    {cert.documentId && (
+                      <div className="text-xs text-muted-foreground">
+                        <span className="font-medium">Document ID:</span> {cert.documentId}
                       </div>
                     )}
                     
