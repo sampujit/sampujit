@@ -107,7 +107,9 @@ const AboutSection: React.FC = () => {
                 My academic journey started at KV O.F. Dum Dum, where I completed both my 10th and 12th grades. Through my education and personal projects, I've developed a keen interest in creating modern web experiences and solving complex problems through code.
               </p>
               <p className="text-lg text-muted-foreground">
-                I'm constantly exploring new technologies and methodologies to expand my skillset and create innovative solutions that make a positive impact.
+                Curious mind. Code explorer. Data storyteller.
+                I dive deep into Cybersecurity to protect what matters, uncover patterns in data as a Data Analyst, and craft intelligent solutions through AI & Machine Learning.
+                For me, technology isn't just a skill—it's a playground of endless possibilities where I learn, build, and innovate every day.
               </p>
             </div>
           </div>
