@@ -79,7 +79,9 @@ const HeroSection: React.FC = () => {
               
               <div className="overflow-hidden">
                 <p className="text-lg text-muted-foreground max-w-md opacity-0 animate-fade-in delay-500">
-                  Tech enthusiast specializing in web design and competitive coding with a passion for building innovative solutions.
+                  Curious mind. Code explorer. Data storyteller.
+                  I dive deep into Cybersecurity to protect what matters, uncover patterns in data as a Data Analyst, and craft intelligent solutions through AI & Machine Learning.
+                  For me, technology isn't just a skill—it's a playground of endless possibilities where I learn, build, and innovate every day.
                 </p>
               </div>
             </div>
