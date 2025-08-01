@@ -36,6 +36,17 @@ const PortfolioSection: React.FC = () => {
 
   const certifications = [
     {
+      title: "Artificial Intelligence and Machine Learning Program",
+      provider: "ICTRD (Indian Council for Technical Research and Development)",
+      issued: "01 August 2025",
+      type: "Professional Certification",
+      skills: "Artificial Intelligence, Machine Learning, Data Science, Python Programming, Deep Learning, Neural Networks",
+      image: "/lovable-uploads/ebd84cd0-82c2-4a52-a26c-b9d0a70d022d.png",
+      description: "Successfully completed the comprehensive Artificial Intelligence and Machine Learning Program and passed the examination conducted by ICTRD India.",
+      tid: "AZ13269022",
+      documentId: "DI/C/25006568"
+    },
+    {
       title: "Deloitte Cyber Job Simulation",
       provider: "Deloitte (Forage)",
       issued: "Jul 29, 2025",
@@ -226,9 +237,14 @@ const PortfolioSection: React.FC = () => {
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                       cert.type === 'Virtual Internship' ? 'bg-primary/20 text-primary' :
                       cert.type === 'Certificate' ? 'bg-accent/20 text-accent' :
+                      cert.type === 'Certificate of Completion' ? 'bg-blue-500/20 text-blue-400' :
+                      cert.type === 'Professional Certification' ? 'bg-purple-500/20 text-purple-400' :
+                      cert.type === 'Professional Certificate' ? 'bg-indigo-500/20 text-indigo-400' :
+                      cert.type === 'Course Certificate' ? 'bg-emerald-500/20 text-emerald-400' :
+                      cert.type === 'Professional Course' ? 'bg-orange-500/20 text-orange-400' :
                       cert.type === 'Achievement' ? 'bg-yellow-500/20 text-yellow-400' :
                       cert.type === 'Job Simulation' ? 'bg-green-500/20 text-green-400' :
-                      'bg-secondary/20 text-secondary-foreground'
+                      'bg-secondary/20 text-foreground'
                     }`}>
                       {cert.type}
                     </span>
