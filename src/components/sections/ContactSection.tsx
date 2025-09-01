@@ -128,10 +128,10 @@ const ContactSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <div ref={infoRef} className="opacity-0">
-            <div className="glass p-8 rounded-xl h-full">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <div className="glass p-6 sm:p-8 rounded-xl h-full">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6">Contact Information</h3>
               
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
@@ -154,14 +154,14 @@ const ContactSection: React.FC = () => {
                 ))}
               </div>
               
-              <div className="mt-12">
-                <h4 className="text-lg font-semibold mb-4">Let's Connect</h4>
-                <p className="text-muted-foreground mb-6">
+              <div className="mt-8 sm:mt-12">
+                <h4 className="text-base sm:text-lg font-semibold mb-4">Let's Connect</h4>
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
                   I'm currently open to freelance opportunities and collaborations. If you have an interesting project or just want to say hello, don't hesitate to reach out!
                 </p>
                 
-                <div className="p-6 rounded-lg bg-primary/5 border border-primary/10">
-                  <p className="text-sm">
+                <div className="p-4 sm:p-6 rounded-lg bg-primary/5 border border-primary/10">
+                  <p className="text-xs sm:text-sm">
                     <span className="font-medium">Quick Response:</span> I typically respond to all inquiries within 24-48 hours.
                   </p>
                 </div>
@@ -170,8 +170,8 @@ const ContactSection: React.FC = () => {
           </div>
           
           <div>
-            <form ref={formRef} onSubmit={handleSubmit} className="glass p-8 rounded-xl opacity-0" style={{ animationDelay: '200ms' }}>
-              <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
+            <form ref={formRef} onSubmit={handleSubmit} className="glass p-6 sm:p-8 rounded-xl opacity-0" style={{ animationDelay: '200ms' }}>
+              <h3 className="text-xl sm:text-2xl font-bold mb-6">Send a Message</h3>
               
               <div className="space-y-6">
                 <div>

@@ -32,17 +32,17 @@ const TimelineItem: React.FC<{
   return (
     <div 
       ref={itemRef} 
-      className={`relative pl-10 pb-10 opacity-0`}
+      className={`relative pl-8 sm:pl-10 pb-8 sm:pb-10 opacity-0`}
       style={{ animationDelay: `${index * 200}ms` }}
     >
       {index !== 0 && <div className="timeline-line"></div>}
       <div className="timeline-dot"></div>
-      <div className="glass p-6 rounded-xl hover-card">
-        <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-sm font-medium mb-3">
+      <div className="glass p-4 sm:p-6 rounded-xl hover-card">
+        <span className="inline-block px-2 sm:px-3 py-1 rounded-full bg-primary/20 text-primary text-xs sm:text-sm font-medium mb-2 sm:mb-3">
           {year}
         </span>
-        <h3 className="text-lg font-semibold mb-2">{title}</h3>
-        <p className="text-muted-foreground">{description}</p>
+        <h3 className="text-base sm:text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-sm sm:text-base text-muted-foreground">{description}</p>
       </div>
     </div>
   );
@@ -100,13 +100,13 @@ const AboutSection: React.FC = () => {
             </div>
             
             <div ref={textRef} className="opacity-0">
-              <p className="text-lg mb-6">
+              <p className="text-base sm:text-lg mb-6">
                 I am a tech enthusiast and currently pursuing BTech in Computer Science and Engineering from Techno India University. I have a strong passion for technology, web development, and problem-solving through competitive coding.
               </p>
-              <p className="text-lg mb-6">
+              <p className="text-base sm:text-lg mb-6">
                 My academic journey started at KV O.F. Dum Dum, where I completed both my 10th and 12th grades. Through my education and personal projects, I've developed a keen interest in creating modern web experiences and solving complex problems through code.
               </p>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Curious mind. <br />
                 Code explorer. <br />
                 Data storyteller.
@@ -119,8 +119,8 @@ const AboutSection: React.FC = () => {
           </div>
           
           <div className="w-full lg:w-1/2">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold mb-4 opacity-0 animate-slide-up">Education Timeline</h3>
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 opacity-0 animate-slide-up">Education Timeline</h3>
             </div>
             
             <div className="relative">

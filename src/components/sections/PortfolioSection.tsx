@@ -224,10 +224,10 @@ const PortfolioSection: React.FC = () => {
         </div>
         
         <div ref={contentRef} className="opacity-0" style={{ animationDelay: '200ms' }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {certifications.map((cert, index) => (
               <Card key={index} className="glass border-primary/20 hover-card group overflow-hidden cursor-pointer" onClick={() => handleCertificateClick(cert)}>
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-40 sm:h-48 overflow-hidden">
                   <img 
                     src={cert.image} 
                     alt={cert.title}
@@ -254,24 +254,24 @@ const PortfolioSection: React.FC = () => {
                   </div>
                 </div>
                 
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-                    {cert.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm font-medium text-primary/80">
-                    {cert.provider}
-                  </CardDescription>
-                  {cert.institution && (
-                    <CardDescription className="text-xs text-muted-foreground">
-                      {cert.institution}
-                    </CardDescription>
-                  )}
-                </CardHeader>
+          <CardHeader className="pb-3 px-4 sm:px-6">
+            <CardTitle className="text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">
+              {cert.title}
+            </CardTitle>
+            <CardDescription className="text-xs sm:text-sm font-medium text-primary/80">
+              {cert.provider}
+            </CardDescription>
+            {cert.institution && (
+              <CardDescription className="text-xs text-muted-foreground">
+                {cert.institution}
+              </CardDescription>
+            )}
+          </CardHeader>
                 
-                <CardContent className="pt-0 space-y-3">
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {cert.description}
-                  </p>
+          <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
+            <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
+              {cert.description}
+            </p>
                   
                   <div className="space-y-2 text-xs">
                     {cert.duration && (
@@ -374,20 +374,20 @@ const PortfolioSection: React.FC = () => {
 
       {/* Certificate Modal */}
       <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+        <DialogContent className="max-w-4xl max-h-[90vh] w-[95vw] sm:w-full overflow-hidden">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold">
+            <DialogTitle className="text-lg sm:text-xl font-semibold text-left">
               {selectedCertificate?.title}
             </DialogTitle>
           </DialogHeader>
-          <div className="flex flex-col items-center space-y-4">
+          <div className="flex flex-col items-center space-y-4 max-h-[75vh] overflow-y-auto px-2">
             <img 
               src={selectedCertificate?.image} 
               alt={selectedCertificate?.title}
-              className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
+              className="max-w-full max-h-[60vh] object-contain rounded-lg shadow-lg"
             />
             <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground font-medium">
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium">
                 {selectedCertificate?.provider}
               </p>
               {selectedCertificate?.institution && (
@@ -401,14 +401,14 @@ const PortfolioSection: React.FC = () => {
               {(selectedCertificate?.badge || selectedCertificate?.verification) && (
                 <Button 
                   size="sm" 
-                  className="mt-4"
+                  className="mt-4 w-full sm:w-auto"
                   asChild
                 >
                   <a 
                     href={selectedCertificate.badge || selectedCertificate.verification} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+                    className="flex items-center justify-center gap-2"
                   >
                     <ExternalLink className="w-4 h-4" />
                     Verify Certificate

@@ -52,9 +52,9 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           <div className="w-full lg:w-1/2 space-y-8">
             <div className="space-y-4">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20">
+              <div className="inline-flex items-center px-3 py-2 rounded-full bg-primary/10 backdrop-blur-sm border border-primary/20">
                 <div className="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium text-primary">
+                <span className="text-xs sm:text-sm font-medium text-primary text-center">
                   Aspiring Web Designer, Competitive Coder & Cybersecurity Enthusiast
                 </span>
               </div>
@@ -78,19 +78,19 @@ const HeroSection: React.FC = () => {
               </h1>
               
               <div className="overflow-hidden">
-                <p className="text-lg text-muted-foreground max-w-md opacity-0 animate-fade-in delay-500">
+                <p className="text-base sm:text-lg text-muted-foreground max-w-md opacity-0 animate-fade-in delay-500">
                   Tech enthusiast specializing in web design and competitive coding with a passion for building innovative solutions.
                 </p>
               </div>
             </div>
             
-            <div className="flex flex-wrap gap-4 opacity-0 animate-fade-in delay-500">
+            <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-in delay-500">
               <Button 
                 size="lg" 
-                className="bg-primary hover:bg-primary/80 text-white rounded-full px-8 shadow-lg shadow-primary/20"
+                className="bg-primary hover:bg-primary/80 text-white rounded-full px-6 sm:px-8 shadow-lg shadow-primary/20 w-full sm:w-auto"
                 asChild
               >
-                <a href="#contact">
+                <a href="#contact" className="text-center">
                   Contact Me
                 </a>
               </Button>
@@ -98,10 +98,10 @@ const HeroSection: React.FC = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-full border-primary/50 text-primary hover:bg-primary/10 px-8 backdrop-blur-sm"
+                className="rounded-full border-primary/50 text-primary hover:bg-primary/10 px-6 sm:px-8 backdrop-blur-sm w-full sm:w-auto"
                 asChild
               >
-                <a href="#skills">
+                <a href="#skills" className="text-center">
                   View Skills <ArrowRight size={16} className="ml-2" />
                 </a>
               </Button>
@@ -120,7 +120,7 @@ const HeroSection: React.FC = () => {
           <div className="w-full lg:w-2/5">
             <div className="relative">
               {/* Profile picture with enhanced styling */}
-              <div className="relative aspect-square max-w-md mx-auto">
+              <div className="relative aspect-square max-w-xs sm:max-w-sm md:max-w-md mx-auto">
                 {/* Improved background gradients */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-2xl blur-3xl"></div>
                 <div className="absolute inset-8 bg-gradient-to-br from-primary/20 via-background to-accent/20 rounded-full blur-xl opacity-70"></div>
@@ -139,13 +139,13 @@ const HeroSection: React.FC = () => {
                     {/* Avatar with styled border */}
                     <div className="relative">
                       <div className="absolute -inset-3 bg-gradient-to-r from-primary/30 via-accent/20 to-primary/30 rounded-full blur-md opacity-75 animate-pulse" style={{ animationDuration: '3s' }}></div>
-                      <Avatar className="w-64 h-64 rounded-full border-2 border-white/10 shadow-lg">
+                      <Avatar className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full border-2 border-white/10 shadow-lg">
                         <AvatarImage 
                           src="/lovable-uploads/a6417c63-6896-4883-beda-554c46ded4ee.png" 
                           alt="Sampujit Nath" 
                           className="object-cover"
                         />
-                        <AvatarFallback className="bg-primary/10 text-primary text-3xl">SN</AvatarFallback>
+                        <AvatarFallback className="bg-primary/10 text-primary text-2xl sm:text-3xl">SN</AvatarFallback>
                       </Avatar>
                     </div>
                   </div>
