@@ -1,14 +1,35 @@
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { ExternalLink, Award, Calendar, Clock, Eye } from 'lucide-react';
+import Autoplay from 'embla-carousel-autoplay';
+import type { EmblaCarouselType } from 'embla-carousel';
 
 const PortfolioSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
+  const [api, setApi] = useState<EmblaCarouselType>();
+  const [current, setCurrent] = useState(0);
+  
+  const plugin = useRef(
+    Autoplay({ delay: 3000, stopOnInteraction: true })
+  );
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setCurrent(emblaApi.selectedScrollSnap());
+  }, []);
+
+  useEffect(() => {
+    if (!api) return;
+
+    onSelect(api);
+    api.on('reInit', onSelect);
+    api.on('select', onSelect);
+  }, [api, onSelect]);
   
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -224,137 +245,176 @@ const PortfolioSection: React.FC = () => {
         </div>
         
         <div ref={contentRef} className="opacity-0" style={{ animationDelay: '200ms' }}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {certifications.map((cert, index) => (
-              <Card key={index} className="glass border-primary/20 hover-card group overflow-hidden cursor-pointer" onClick={() => handleCertificateClick(cert)}>
-                <div className="relative h-40 sm:h-48 overflow-hidden">
-                  <img 
-                    src={cert.image} 
-                    alt={cert.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-3 right-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      cert.type === 'Virtual Internship' ? 'bg-primary/20 text-primary' :
-                      cert.type === 'Certificate' ? 'bg-accent/20 text-accent' :
-                      cert.type === 'Certificate of Completion' ? 'bg-blue-500/20 text-blue-400' :
-                      cert.type === 'Professional Certification' ? 'bg-purple-500/20 text-purple-400' :
-                      cert.type === 'Professional Certificate' ? 'bg-indigo-500/20 text-indigo-400' :
-                      cert.type === 'Course Certificate' ? 'bg-emerald-500/20 text-emerald-400' :
-                      cert.type === 'Professional Course' ? 'bg-orange-500/20 text-orange-400' :
-                      cert.type === 'Achievement' ? 'bg-yellow-500/20 text-yellow-400' :
-                      cert.type === 'Job Simulation' ? 'bg-green-500/20 text-green-400' :
-                      'bg-secondary/20 text-foreground'
-                    }`}>
-                      {cert.type}
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <Eye className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                
-          <CardHeader className="pb-3 px-4 sm:px-6">
-            <CardTitle className="text-base sm:text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-              {cert.title}
-            </CardTitle>
-            <CardDescription className="text-xs sm:text-sm font-medium text-primary/80">
-              {cert.provider}
-            </CardDescription>
-            {cert.institution && (
-              <CardDescription className="text-xs text-muted-foreground">
-                {cert.institution}
-              </CardDescription>
-            )}
-          </CardHeader>
-                
-          <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
-            <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-              {cert.description}
-            </p>
-                  
-                  <div className="space-y-2 text-xs">
-                    {cert.duration && (
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Clock className="w-3 h-3" />
-                        <span>{cert.duration}</span>
+          <Carousel
+            setApi={setApi}
+            plugins={[plugin.current]}
+            className="w-full"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {certifications.map((cert, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                  <Card 
+                    className={`transition-all duration-500 cursor-pointer overflow-hidden ${
+                      current === index 
+                        ? 'glass border-primary/50 scale-105 shadow-2xl ring-2 ring-primary/30' 
+                        : 'glass border-primary/20 hover-card scale-95 opacity-70'
+                    } group`}
+                    onClick={() => handleCertificateClick(cert)}
+                  >
+                    <div className="relative h-40 sm:h-48 overflow-hidden">
+                      <img 
+                        src={cert.image} 
+                        alt={cert.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 right-3">
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          cert.type === 'Virtual Internship' ? 'bg-primary/20 text-primary' :
+                          cert.type === 'Certificate' ? 'bg-accent/20 text-accent' :
+                          cert.type === 'Certificate of Completion' ? 'bg-blue-500/20 text-blue-400' :
+                          cert.type === 'Professional Certification' ? 'bg-purple-500/20 text-purple-400' :
+                          cert.type === 'Professional Certificate' ? 'bg-indigo-500/20 text-indigo-400' :
+                          cert.type === 'Course Certificate' ? 'bg-emerald-500/20 text-emerald-400' :
+                          cert.type === 'Professional Course' ? 'bg-orange-500/20 text-orange-400' :
+                          cert.type === 'Achievement' ? 'bg-yellow-500/20 text-yellow-400' :
+                          cert.type === 'Job Simulation' ? 'bg-green-500/20 text-green-400' :
+                          'bg-secondary/20 text-foreground'
+                        }`}>
+                          {cert.type}
+                        </span>
                       </div>
-                    )}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <Eye className="w-8 h-8 text-white" />
+                      </div>
+                      {current === index && (
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent" />
+                      )}
+                    </div>
                     
-                    {(cert.period || cert.issued) && (
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <Calendar className="w-3 h-3" />
-                        <span>{cert.period || cert.issued}</span>
-                      </div>
-                    )}
+                    <CardHeader className="pb-3 px-4 sm:px-6">
+                      <CardTitle className={`text-base sm:text-lg leading-tight line-clamp-2 transition-colors ${
+                        current === index ? 'text-primary' : 'group-hover:text-primary'
+                      }`}>
+                        {cert.title}
+                      </CardTitle>
+                      <CardDescription className="text-xs sm:text-sm font-medium text-primary/80">
+                        {cert.provider}
+                      </CardDescription>
+                      {cert.institution && (
+                        <CardDescription className="text-xs text-muted-foreground">
+                          {cert.institution}
+                        </CardDescription>
+                      )}
+                    </CardHeader>
                     
-                    {cert.achievement && (
-                      <div className="flex items-center gap-2 text-yellow-400">
-                        <Award className="w-3 h-3" />
-                        <span>{cert.achievement}</span>
+                    <CardContent className="pt-0 space-y-3 px-4 sm:px-6">
+                      <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
+                        {cert.description}
+                      </p>
+                      
+                      <div className="space-y-2 text-xs">
+                        {cert.duration && (
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Clock className="w-3 h-3" />
+                            <span>{cert.duration}</span>
+                          </div>
+                        )}
+                        
+                        {(cert.period || cert.issued) && (
+                          <div className="flex items-center gap-2 text-muted-foreground">
+                            <Calendar className="w-3 h-3" />
+                            <span>{cert.period || cert.issued}</span>
+                          </div>
+                        )}
+                        
+                        {cert.achievement && (
+                          <div className="flex items-center gap-2 text-yellow-400">
+                            <Award className="w-3 h-3" />
+                            <span>{cert.achievement}</span>
+                          </div>
+                        )}
+                        
+                        {cert.supporter && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">Supported by:</span> {cert.supporter}
+                          </div>
+                        )}
+                        
+                        {cert.code && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">Code:</span> {cert.code}
+                          </div>
+                        )}
+                        
+                        {cert.verificationCode && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">Verification:</span> {cert.verificationCode}
+                          </div>
+                        )}
+                        
+                        {cert.tid && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">TID:</span> {cert.tid}
+                          </div>
+                        )}
+                        
+                        {cert.documentId && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">Document ID:</span> {cert.documentId}
+                          </div>
+                        )}
+                        
+                        {cert.skills && (
+                          <div className="text-xs text-muted-foreground">
+                            <span className="font-medium">Skills:</span> {cert.skills}
+                          </div>
+                        )}
                       </div>
-                    )}
-                    
-                    {cert.supporter && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">Supported by:</span> {cert.supporter}
+                      
+                      <div className="flex gap-2 pt-2">
+                        {(cert.badge || cert.verification) && (
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="text-xs rounded-full border-primary/50 text-primary hover:bg-primary/10"
+                            asChild
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <a 
+                              href={cert.badge || cert.verification} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1"
+                            >
+                              <ExternalLink className="w-3 h-3" />
+                              Verify
+                            </a>
+                          </Button>
+                        )}
                       </div>
-                    )}
-                    
-                    {cert.code && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">Code:</span> {cert.code}
-                      </div>
-                    )}
-                    
-                    {cert.verificationCode && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">Verification:</span> {cert.verificationCode}
-                      </div>
-                    )}
-                    
-                    {cert.tid && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">TID:</span> {cert.tid}
-                      </div>
-                    )}
-                    
-                    {cert.documentId && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">Document ID:</span> {cert.documentId}
-                      </div>
-                    )}
-                    
-                    {cert.skills && (
-                      <div className="text-xs text-muted-foreground">
-                        <span className="font-medium">Skills:</span> {cert.skills}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="flex gap-2 pt-2">
-                    {(cert.badge || cert.verification) && (
-                      <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="text-xs rounded-full border-primary/50 text-primary hover:bg-primary/10"
-                        asChild
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <a 
-                          href={cert.badge || cert.verification} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          Verify
-                        </a>
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-background/80 border-primary/20 hover:bg-primary/10" />
+            <CarouselNext className="right-4 bg-background/80 border-primary/20 hover:bg-primary/10" />
+          </Carousel>
+
+          {/* Dots indicator */}
+          <div className="flex justify-center gap-2 mt-8">
+            {certifications.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  current === index ? 'bg-primary w-6' : 'bg-primary/30 hover:bg-primary/50'
+                }`}
+                onClick={() => api?.scrollTo(index)}
+              />
             ))}
           </div>
           
