@@ -1,5 +1,6 @@
 
 import React from 'react';
+import VisitorCounter from '@/components/VisitorCounter';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -20,7 +21,11 @@ const Footer: React.FC = () => {
             <a href="#portfolio" className="text-muted-foreground hover:text-foreground transition-colors">Portfolio</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
           </div>
-          
+
+          <div className="w-full mb-6">
+            <VisitorCounter />
+          </div>
+
           <p className="text-sm text-muted-foreground text-center">
             &copy; {currentYear} Sampujit Nath. All rights reserved.
           </p>
